@@ -97,13 +97,23 @@ export const postMessage = (body) => (dispatch) => {
   try {
     const data = saveMessage(body);
 
-    if (!body.conversationId) {
-      dispatch(addConversation(body.recipientId, data.message));
-    } else {
-      dispatch(setNewMessage(data.message));
-    }
+    data.then(res => {
+      if (!body.conversationId) {
+        dispatch(addConversation(body.recipientId, res.message));
+      } else {
+        dispatch(setNewMessage(res.message));
+      }
 
-    sendMessage(data, body);
+      sendMessage(res, body);
+    })
+
+    // if (!body.conversationId) {
+    //   dispatch(addConversation(body.recipientId, data.message));
+    // } else {
+    //   dispatch(setNewMessage(data.message));
+    // }
+
+    // sendMessage(data, body);
   } catch (error) {
     console.error(error);
   }
