@@ -9,12 +9,13 @@ const Messages = (props) => {
 
   useEffect(() => {
     setSortedMessages(() => {
-      return messages.sort((a, b) => {
-        return (a.id < b.id) ? -1 : 1;
-      });
+      if (messages) {
+        return messages.sort((a, b) => {
+          return (a.id < b.id) ? -1 : 1;
+        });
+      }
     });
-  }, []);
-
+  }, [messages]);
 
   return (
     <Box>
