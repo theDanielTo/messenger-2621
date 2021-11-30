@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -12,8 +13,16 @@ import {
 } from "@material-ui/core";
 import { register } from "./store/utils/thunkCreators";
 
+const useStyles = makeStyles(() => ({
+  root: {
+    display: "flex",
+    flexGrow: 8,
+  }
+}));
+
 const Login = (props) => {
   const history = useHistory();
+  const classes = useStyles();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -37,7 +46,10 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
+    <Grid container className={classes.root}>
+      <Box>
+        <img src="./assets/bg-img.png" alt="bg-img"/>
+      </Box>
       <Box>
         <Grid container item>
           <Typography>Need to log in?</Typography>
