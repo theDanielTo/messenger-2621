@@ -4,7 +4,6 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
@@ -18,17 +17,13 @@ const useStyles = makeStyles(() => ({
     width: "100%"
   },
   heroImage: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
     height: "100%",
-    width: "40%",
-    background: "left/contain no-repeat url('./assets/bg-img.png')",
-    color: "white"
+    background: "linear-gradient(to top, rgba(58, 141, 255, .80), rgba(58, 141, 255, .80)), url('./assets/bg-img.png') center/cover no-repeat",
+    color: "white",
+    fontSize: "2rem"
   },
   form: {
-    height: "100%",
+    height: "100%"
   }
 }));
 
@@ -51,45 +46,70 @@ const Login = (props) => {
 
   return (
     <Grid container className={classes.root}>
-      <Box className={classes.heroImage}>
-        <img
-          src="./assets/bubble.svg"
-          alt="bubble"/>
-        <Typography>Converse with anyone with any language</Typography>
-      </Box>
-      <Box className={classes.form}>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
+      <Grid
+        container item
+        xs={6} md={4}
+        className={classes.heroImage}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        rowSpacing={40}
+      >
+        <Grid item>
+          <img
+            src="./assets/bubble.svg"
+            alt="bubble"
+          />
         </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
+        <Grid item>
+          <Typography variant="h4">
+            Converse with anyone
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="h4">
+            with any language
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={6} md={8}>
+        <Grid className={classes.form}>
+          <Grid container item>
+            <Typography>Need to register?</Typography>
+            <Button onClick={() => history.push("/register")}>Register</Button>
+          </Grid>
+          <form onSubmit={handleLogin}>
             <Grid>
+              <Grid>
+                <FormControl margin="normal" required>
+                  <TextField
+                    aria-label="username"
+                    label="Username"
+                    name="username"
+                    type="text"
+                  />
+                </FormControl>
+              </Grid>
               <FormControl margin="normal" required>
                 <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
+                  label="password"
+                  aria-label="password"
+                  type="password"
+                  name="password"
                 />
               </FormControl>
+              <Grid>
+                <Button type="submit" variant="contained" size="large">
+                  Login
+                </Button>
+              </Grid>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+          </form>
+        </Grid>
+      </Grid>
+
+
     </Grid>
   );
 };
