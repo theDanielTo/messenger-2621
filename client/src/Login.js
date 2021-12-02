@@ -16,14 +16,27 @@ const useStyles = makeStyles(() => ({
     height: "100vh",
     width: "100%"
   },
-  heroImage: {
+  bannerImage: {
     height: "100%",
     background: "linear-gradient(to top, rgba(58, 141, 255, .80), rgba(58, 141, 255, .80)), url('./assets/bg-img.png') center/cover no-repeat",
-    color: "white",
-    fontSize: "2rem"
+    color: "white"
+  },
+  bannerIcon: {
+    height: "150%",
+    transform: "translateY(-100%)",
+    '@media (max-width:600px)': {
+      height: "80%"
+    }
+  },
+  bannerText: {
+    padding: '0 8rem',
+    '@media (max-width:600px)': {
+      fontSize: 18,
+      padding: '0 1rem'
+    }
   },
   form: {
-    height: "100%"
+    // height: "100%"
   }
 }));
 
@@ -49,26 +62,20 @@ const Login = (props) => {
       <Grid
         container item
         xs={6} md={4}
-        className={classes.heroImage}
+        className={classes.bannerImage}
         direction="column"
         justifyContent="center"
         alignItems="center"
-        rowSpacing={40}
       >
         <Grid item>
-          <img
+          <img className={classes.bannerIcon}
             src="./assets/bubble.svg"
             alt="bubble"
           />
         </Grid>
         <Grid item>
-          <Typography variant="h4">
-            Converse with anyone
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h4">
-            with any language
+          <Typography variant="h4" align="center" className={classes.bannerText}>
+            Converse with anyone with any language
           </Typography>
         </Grid>
       </Grid>
@@ -91,14 +98,16 @@ const Login = (props) => {
                   />
                 </FormControl>
               </Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  label="password"
-                  aria-label="password"
-                  type="password"
-                  name="password"
-                />
-              </FormControl>
+              <Grid>
+                <FormControl margin="normal" required>
+                  <TextField
+                    label="password"
+                    aria-label="password"
+                    type="password"
+                    name="password"
+                  />
+                </FormControl>
+              </Grid>
               <Grid>
                 <Button type="submit" variant="contained" size="large">
                   Login
