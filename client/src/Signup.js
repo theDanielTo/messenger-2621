@@ -4,7 +4,6 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
@@ -47,10 +46,31 @@ const Login = (props) => {
 
   return (
     <Grid container className={classes.root}>
-      <Box>
-        <img src="./assets/bg-img.png" alt="bg-img"/>
-      </Box>
-      <Box>
+      <Grid
+        container item
+        xs={6} md={5}
+        className={classes.bannerImage}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item>
+          <img className={classes.bannerIcon}
+            src="./assets/bubble.svg"
+            alt="bubble"
+          />
+        </Grid>
+        <Grid item>
+          <Typography variant="h4" align="center" className={classes.bannerText}>
+            Converse with anyone
+          </Typography>
+          <Typography variant="h4" align="center" className={classes.bannerText}>
+            with any language
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <Grid>
         <Grid container item>
           <Typography>Need to log in?</Typography>
           <Button onClick={() => history.push("/login")}>Login</Button>
@@ -114,7 +134,7 @@ const Login = (props) => {
             </Button>
           </Grid>
         </form>
-      </Box>
+      </Grid>
     </Grid>
   );
 };
