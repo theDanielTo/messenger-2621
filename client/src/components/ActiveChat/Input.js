@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput } from "@material-ui/core";
+import { FormControl, FilledInput, InputAdornment } from "@material-ui/core";
+import AttachmentIcon from '@material-ui/icons/Attachment';
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
@@ -14,6 +15,13 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
     marginBottom: 20
+  },
+  attachmentIcon: {
+    fontSize: "2rem",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#333"
+    }
   }
 }));
 
@@ -49,6 +57,14 @@ const Input = (props) => {
           value={text}
           name="text"
           onChange={handleChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <AttachmentIcon
+                color="secondary"
+                className={classes.attachmentIcon}
+              />
+            </InputAdornment>
+          }
         />
       </FormControl>
     </form>
