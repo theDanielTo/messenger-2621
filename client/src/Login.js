@@ -101,9 +101,10 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container className={classes.root}>
-      <Grid
-        container item
+    <Grid container
+      className={classes.root}
+    >
+      <Grid container item
         xs={6} md={5}
         className={classes.bannerImage}
         direction="column"
@@ -117,45 +118,67 @@ const Login = (props) => {
           />
         </Grid>
         <Grid item>
-          <Typography variant="h4" align="center" className={classes.bannerText}>
+          <Typography
+            variant="h4"
+            align="center"
+            className={classes.bannerText}
+          >
             Converse with anyone
           </Typography>
-          <Typography variant="h4" align="center" className={classes.bannerText}>
+          <Typography
+            variant="h4"
+            align="center"
+            className={classes.bannerText}
+          >
             with any language
           </Typography>
         </Grid>
       </Grid>
 
-      <Grid
-        container item
+      <Grid container item
         xs={6} md={7}
         className={classes.mainScreen}
         direction="column"
         justifyContent="center"
         alignItems="center"
       >
-        <Grid container className={classes.signupRoute}>
-          <Typography color="secondary" className={classes.routeText}>
+        <Grid container
+          className={classes.signupRoute}
+        >
+          <Typography
+            color="secondary"
+            className={classes.routeText}
+          >
             Don't have an account?
           </Typography>
-          <Button onClick={() => history.push("/register")}
-            color="primary">
+          <Button
+            onClick={() => history.push("/register")}
+            color="primary"
+          >
             Create account
           </Button>
         </Grid>
-        <form onSubmit={handleLogin} className={classes.formContainer}>
+        <form
+          onSubmit={handleLogin}
+          className={classes.formContainer}
+        >
           <Grid container>
             <Grid item
               className={classes.formElement}
             >
-              <Typography variant="h3" className={classes.formHeader}>
+              <Typography
+                variant="h3"
+                className={classes.formHeader}
+              >
                 Welcome back!
               </Typography>
             </Grid>
             <Grid item
               className={classes.formElement}
             >
-              <FormControl margin="normal" required
+              <FormControl
+                margin="normal"
+                required
                 className={classes.formInput}
               >
                 <TextField
@@ -169,8 +192,11 @@ const Login = (props) => {
             <Grid item
               className={classes.formElement}
             >
-              <FormControl margin="normal" required
-                className={classes.formInput}>
+              <FormControl
+                margin="normal"
+                required
+                className={classes.formInput}
+              >
                 <TextField
                   aria-label="password"
                   label="Password"
