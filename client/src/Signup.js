@@ -70,71 +70,80 @@ const Login = (props) => {
         </Grid>
       </Grid>
 
-      <Grid>
-        <Grid container item>
+      <Grid
+        container item
+        xs={6} md={7}
+        className={classes.mainScreen}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid container className={classes.signupRoute}>
           <Typography>Need to log in?</Typography>
           <Button onClick={() => history.push("/login")}>Login</Button>
         </Grid>
-        <form onSubmit={handleRegister}>
+      </Grid>
+      <form onSubmit={handleRegister}>
+        <Grid container>
+          <Grid item>
+            <FormControl>
+              <TextField
+                aria-label="username"
+                label="Username"
+                name="username"
+                type="text"
+                required
+              />
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <FormControl>
+              <TextField
+                label="E-mail address"
+                aria-label="e-mail address"
+                type="email"
+                name="email"
+                required
+              />
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <FormControl error={!!formErrorMessage.confirmPassword}>
+              <TextField
+                aria-label="password"
+                label="Password"
+                type="password"
+                inputProps={{ minLength: 6 }}
+                name="password"
+                required
+              />
+              <FormHelperText>
+                {formErrorMessage.confirmPassword}
+              </FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <FormControl error={!!formErrorMessage.confirmPassword}>
+              <TextField
+                label="Confirm Password"
+                aria-label="confirm password"
+                type="password"
+                inputProps={{ minLength: 6 }}
+                name="confirmPassword"
+                required
+              />
+              <FormHelperText>
+                {formErrorMessage.confirmPassword}
+              </FormHelperText>
+            </FormControl>
+          </Grid>
           <Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  aria-label="password"
-                  label="Password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="password"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  label="Confirm Password"
-                  aria-label="confirm password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="confirmPassword"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
             <Button type="submit" variant="contained" size="large">
               Create
             </Button>
           </Grid>
-        </form>
-      </Grid>
+        </Grid>
+      </form>
     </Grid>
   );
 };
