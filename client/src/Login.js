@@ -76,7 +76,10 @@ const useStyles = makeStyles(() => ({
   formElement: {
     width: "100%",
     marginBottom: "2.5rem",
-    textAlign: "center"
+    textAlign: "center",
+    '@media (max-width:600px)': {
+      marginBottom: "1rem"
+    }
   },
   formInput: {
     width: "100%"
