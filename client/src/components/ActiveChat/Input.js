@@ -31,13 +31,14 @@ const useStyles = makeStyles(() => ({
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
+  const [attachments, setAttachments] = useState([]);
   const { postMessage, otherUser, conversationId, user } = props;
 
-  const handleFileChange = (event) => {
-
+  const handleFileSelect = (event) => {
+    setAttachments(() => [...attachments, event.target.files[0]])
   }
 
-  const handleChange = (event) => {
+  const handleMessageChange = (event) => {
     setText(event.target.value);
   };
 
@@ -63,7 +64,7 @@ const Input = (props) => {
           placeholder="Type something..."
           value={text}
           name="text"
-          onChange={handleChange}
+          onChange={handleMessageChange}
           endAdornment={
             <InputAdornment position="end">
               <InputLabel htmlFor="image">
@@ -77,7 +78,7 @@ const Input = (props) => {
                   name="image"
                   id="image"
                   className={classes.fileInput}
-                  onChange={handleFileChange}
+                  onChange={handleFileSelect}
                 />
               </InputLabel>
             </InputAdornment>
