@@ -35,11 +35,22 @@ const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
   const [files, setFiles] = useState([]);
-  const [attachments, setAttachments] = useState([]);
   const { postMessage, otherUser, conversationId, user } = props;
 
-  const handleFileSelect = (event) => {
-    setFiles(() => [...files, ...event.target.files]);
+  const handleFileSelect = async (event) => {
+    const promises = [];
+
+    for (const file of event.target.files) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "p78baqe2");
+      promises.push(axios.post(CLOUDINARY_API, formData));
+    }
+
+    await Promise.all(promises)
+      .then(responses => {
+        setFiles(() => [...files, ...responses])
+      })
   }
 
   const handleMessageChange = (event) => {
@@ -49,17 +60,9 @@ const Input = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    for (const file of files) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "p78baqe2");
-
-      axios
-        .post(CLOUDINARY_API, formData)
-        .then(res => {
-          setAttachments(() => [...attachments, res.data.url]);
-        });
-    }
+    const attachmentUrls = files.map(file => {
+      return file.data.url;
+    })
 
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
     const reqBody = {
@@ -67,7 +70,7 @@ const Input = (props) => {
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
-      attachments
+      attachments: attachmentUrls
     };
     await postMessage(reqBody);
     setText("");
