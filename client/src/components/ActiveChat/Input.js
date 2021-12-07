@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { FormControl, FilledInput, InputLabel, InputAdornment } from "@material-ui/core";
 import AttachmentIcon from '@material-ui/icons/Attachment';
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
+
+const CLOUDINARY_API = "https://lfz-cors.herokuapp.com/?url=https://api.cloudinary.com/v1_1/dto1989/image/upload";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -31,11 +34,12 @@ const useStyles = makeStyles(() => ({
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
+  const [files, setFiles] = useState([]);
   const [attachments, setAttachments] = useState([]);
   const { postMessage, otherUser, conversationId, user } = props;
 
   const handleFileSelect = (event) => {
-    setAttachments(() => [...attachments, event.target.files[0]])
+    setFiles(() => [...files, ...event.target.files]);
   }
 
   const handleMessageChange = (event) => {
@@ -44,12 +48,26 @@ const Input = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "p78baqe2");
+
+      axios
+        .post(CLOUDINARY_API, formData)
+        .then(res => {
+          setAttachments(() => [...attachments, res.data.url]);
+        });
+    }
+
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
     const reqBody = {
       text: event.target.text.value,
       recipientId: otherUser.id,
       conversationId,
-      sender: conversationId ? null : user
+      sender: conversationId ? null : user,
+      attachments
     };
     await postMessage(reqBody);
     setText("");
@@ -67,7 +85,7 @@ const Input = (props) => {
           onChange={handleMessageChange}
           endAdornment={
             <InputAdornment position="end">
-              <InputLabel htmlFor="image">
+              <InputLabel htmlFor="attachment">
                 <AttachmentIcon
                   color="secondary"
                   className={classes.attachmentIcon}
@@ -75,8 +93,9 @@ const Input = (props) => {
                 <input
                   required
                   type="file"
-                  name="image"
-                  id="image"
+                  name="attachment"
+                  id="attachment"
+                  multiple
                   className={classes.fileInput}
                   onChange={handleFileSelect}
                 />
