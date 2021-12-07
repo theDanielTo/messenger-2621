@@ -12,7 +12,7 @@ import {
 import { SideBanner } from "./components/Authentication/index";
 import { login } from "./store/utils/thunkCreators";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
     width: "100%"
@@ -27,18 +27,25 @@ const useStyles = makeStyles(() => ({
     top: 0,
     right: 0,
     padding: "3rem",
-    '@media (max-width:680px)': {
-      width: "50%",
+    '@media (max-width:700px)': {
+      width: "80%",
       padding: "0.5rem",
       justifyContent: "flex-end"
     }
   },
   routeText: {
-    lineHeight: "2rem",
+    lineHeight: "4rem",
     marginRight: "3rem",
-    '@media (max-width:680px)': {
+    '@media (max-width:820px)': {
       fontSize: 14,
       marginRight: "1rem"
+    }
+  },
+  createAccountBtn: {
+    padding: "1rem 3rem",
+    boxShadow: "0 0 0.8rem 0.1rem rgba(58, 141, 255, 0.2)",
+    '@media (max-width:820px)': {
+      padding: "1rem 2rem"
     }
   },
   formContainer: {
@@ -94,7 +101,11 @@ const Login = (props) => {
           <Typography color="secondary" className={classes.routeText}>
             Don't have an account?
           </Typography>
-          <Button onClick={() => history.push("/register")} color="primary">
+          <Button
+            onClick={() => history.push("/register")}
+            color="primary"
+            className={classes.createAccountBtn}
+          >
             Create account
           </Button>
         </Grid>
