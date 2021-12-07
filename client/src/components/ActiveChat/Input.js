@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput, InputAdornment } from "@material-ui/core";
+import { FormControl, FilledInput, InputLabel, InputAdornment } from "@material-ui/core";
 import AttachmentIcon from '@material-ui/icons/Attachment';
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
@@ -22,6 +22,9 @@ const useStyles = makeStyles(() => ({
     "&:hover": {
       color: "#333"
     }
+  },
+  fileInput: {
+    display: "none"
   }
 }));
 
@@ -29,6 +32,10 @@ const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
   const { postMessage, otherUser, conversationId, user } = props;
+
+  const handleFileChange = (event) => {
+
+  }
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -59,10 +66,20 @@ const Input = (props) => {
           onChange={handleChange}
           endAdornment={
             <InputAdornment position="end">
-              <AttachmentIcon
-                color="secondary"
-                className={classes.attachmentIcon}
-              />
+              <InputLabel htmlFor="image">
+                <AttachmentIcon
+                  color="secondary"
+                  className={classes.attachmentIcon}
+                />
+                <input
+                  required
+                  type="file"
+                  name="image"
+                  id="image"
+                  className={classes.fileInput}
+                  onChange={handleFileChange}
+                />
+              </InputLabel>
             </InputAdornment>
           }
         />
