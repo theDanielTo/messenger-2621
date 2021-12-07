@@ -10,80 +10,63 @@ import {
   TextField,
   FormHelperText,
 } from "@material-ui/core";
+import { SideBanner } from "./components/Authentication/index";
 import { register } from "./store/utils/thunkCreators";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
     width: "100%"
   },
-  bannerImage: {
-    height: "100%",
-    background: "linear-gradient(to top, rgba(58, 141, 255, 0.8), rgba(58, 141, 255, .80)), url('./assets/bg-img.png') center/cover no-repeat",
-    color: "white"
-  },
-  bannerIcon: {
-    height: "100%",
-    transform: "translateY(-100%)",
-    '@media (max-width:600px)': {
-      height: "50%",
-      transform: "translateY(-50%)"
-    }
-  },
-  bannerText: {
-    padding: '0 8rem',
-    '@media (max-width:600px)': {
-      fontSize: 18,
-      padding: '0 1rem'
-    }
-  },
   mainScreen: {
     height: "100%",
-    padding: 10
+    width: "100%"
   },
   loginRoute: {
     width: "auto",
     position: "absolute",
     top: 0,
     right: 0,
-    padding: "4rem",
+    padding: "3rem",
     '@media (max-width:600px)': {
-      width: "50%",
+      width: "80%",
       padding: "0.5rem",
       justifyContent: "flex-end"
     }
   },
   routeText: {
-    lineHeight: "2rem",
-    marginRight: "4rem",
-    '@media (max-width:600px)': {
+    lineHeight: "4rem",
+    marginRight: "3rem",
+    '@media (max-width:820px)': {
       fontSize: 14,
-      marginRight: "0"
+      marginRight: "1rem"
+    }
+  },
+  loginBtn: {
+    padding: "1rem 3rem",
+    boxShadow: "0 0 1rem 0.2rem rgba(58, 141, 255, 0.2)",
+    '@media (max-width:820px)': {
+      padding: "1rem 2rem"
     }
   },
   formContainer: {
-    width: "50%",
-    height: "50%",
-    '@media (max-width:600px)': {
-      width: "100%"
-    }
+    width: "70%",
+    height: "50%"
   },
   formHeader: {
     textAlign: "left",
-    '@media (max-width:600px)': {
-      fontSize: "1.5em"
-    }
+    fontWeight: "bold"
   },
   formElement: {
     width: "100%",
-    marginBottom: "2.5rem",
-    textAlign: "center",
-    '@media (max-width:600px)': {
-      marginBottom: "1rem"
-    }
+    marginBottom: "1.5rem",
+    textAlign: "center"
   },
   formInput: {
     width: "100%"
+  },
+  createBtn: {
+    padding: "1rem 4rem"
   }
 }));
 
@@ -116,84 +99,36 @@ const Login = (props) => {
     <Grid container
       className={classes.root}
     >
-      <Grid container item
-        xs={6} md={5}
-        className={classes.bannerImage}
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item>
-          <img className={classes.bannerIcon}
-            src="./assets/bubble.svg"
-            alt="bubble"
-          />
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="h4"
-            align="center"
-            className={classes.bannerText}
-          >
-            Converse with anyone
-          </Typography>
-          <Typography
-            variant="h4"
-            align="center"
-            className={classes.bannerText}
-          >
-            with any language
-          </Typography>
-        </Grid>
-      </Grid>
+      <SideBanner />
 
       <Grid container item
-        xs={6} md={7}
+        sm={7}
         className={classes.mainScreen}
         direction="column"
         justifyContent="center"
         alignItems="center"
       >
-        <Grid container
-          className={classes.loginRoute}
-        >
-          <Typography
-            color="secondary"
-            className={classes.routeText}
-          >
+        <Grid container className={classes.loginRoute}>
+          <Typography color="secondary" className={classes.routeText}>
             Already have an account?
           </Typography>
           <Button
             onClick={() => history.push("/login")}
             color="primary"
+            className={classes.loginBtn}
           >
             Login
           </Button>
         </Grid>
-
-        <form
-          onSubmit={handleRegister}
-          className={classes.formContainer}
-        >
+        <form onSubmit={handleRegister} className={classes.formContainer}>
           <Grid container>
-            <Grid item
-              className={classes.formElement}
-            >
-              <Typography
-                variant="h3"
-                className={classes.formHeader}
-              >
+            <Grid item className={classes.formElement}>
+              <Typography variant="h5" className={classes.formHeader}>
                 Create an account.
               </Typography>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
-              <FormControl
-                margin="normal"
-                required
-                className={classes.formInput}
-              >
+            <Grid item className={classes.formElement}>
+              <FormControl margin="normal" required className={classes.formInput}>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -203,12 +138,8 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
-              <FormControl
-                className={classes.formInput}
-              >
+            <Grid item className={classes.formElement}>
+              <FormControl className={classes.formInput}>
                 <TextField
                   label="E-mail address"
                   aria-label="e-mail address"
@@ -218,9 +149,7 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
+            <Grid item className={classes.formElement}>
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
                 className={classes.formInput}
@@ -238,9 +167,7 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
+            <Grid item className={classes.formElement}>
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
                 className={classes.formInput}
@@ -258,14 +185,13 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
+            <Grid item className={classes.formElement}>
               <Button
                 type="submit"
                 variant="contained"
                 size="large"
                 color="primary"
+                className={classes.createBtn}
               >
                 Create
               </Button>

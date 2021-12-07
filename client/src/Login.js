@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   createAccountBtn: {
     padding: "1rem 3rem",
-    boxShadow: "0 0 0.8rem 0.1rem rgba(58, 141, 255, 0.2)",
+    boxShadow: "0 0 0.8rem 0.2rem rgba(58, 141, 255, 0.2)",
     '@media (max-width:820px)': {
       padding: "1rem 2rem"
     }
