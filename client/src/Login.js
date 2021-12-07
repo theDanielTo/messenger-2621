@@ -4,7 +4,6 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
@@ -20,15 +19,15 @@ const useStyles = makeStyles(() => ({
   },
   mainScreen: {
     height: "100%",
-    padding: 10
+    width: "100%"
   },
   signupRoute: {
     width: "auto",
     position: "absolute",
     top: 0,
     right: 0,
-    padding: "3.5rem",
-    '@media (max-width:600px)': {
+    padding: "3rem",
+    '@media (max-width:680px)': {
       width: "50%",
       padding: "0.5rem",
       justifyContent: "flex-end"
@@ -36,33 +35,24 @@ const useStyles = makeStyles(() => ({
   },
   routeText: {
     lineHeight: "2rem",
-    marginRight: "4rem",
-    '@media (max-width:600px)': {
+    marginRight: "3rem",
+    '@media (max-width:680px)': {
       fontSize: 14,
-      marginRight: "0"
+      marginRight: "1rem"
     }
   },
   formContainer: {
     width: "70%",
-    height: "50%",
-    '@media (max-width:600px)': {
-      width: "100%"
-    }
+    height: "50%"
   },
   formHeader: {
     textAlign: "left",
-    fontWeight: "bold",
-    '@media (max-width:600px)': {
-      fontSize: "1.5em"
-    }
+    fontWeight: "bold"
   },
   formElement: {
     width: "100%",
-    marginBottom: "2.5rem",
-    textAlign: "center",
-    '@media (max-width:600px)': {
-      marginBottom: "1rem"
-    }
+    marginBottom: "2rem",
+    textAlign: "center"
   },
   formInput: {
     width: "100%"
@@ -90,57 +80,33 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container
-      className={classes.root}
-    >
+    <Grid container className={classes.root}>
       <SideBanner />
 
       <Grid container item
-        sm={8} md={7}
+        sm={7}
         className={classes.mainScreen}
         direction="column"
         justifyContent="center"
         alignItems="center"
       >
-        <Grid container
-          className={classes.signupRoute}
-        >
-          <Typography
-            color="secondary"
-            className={classes.routeText}
-          >
+        <Grid container className={classes.signupRoute}>
+          <Typography color="secondary" className={classes.routeText}>
             Don't have an account?
           </Typography>
-          <Button
-            onClick={() => history.push("/register")}
-            color="primary"
-          >
+          <Button onClick={() => history.push("/register")} color="primary">
             Create account
           </Button>
         </Grid>
-        <form
-          onSubmit={handleLogin}
-          className={classes.formContainer}
-        >
+        <form onSubmit={handleLogin} className={classes.formContainer}>
           <Grid container>
-            <Grid item
-              className={classes.formElement}
-            >
-              <Typography
-                variant="h5"
-                className={classes.formHeader}
-              >
+            <Grid item className={classes.formElement}>
+              <Typography variant="h5" className={classes.formHeader}>
                 Welcome back!
               </Typography>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
-              <FormControl
-                margin="normal"
-                required
-                className={classes.formInput}
-              >
+            <Grid item className={classes.formElement}>
+              <FormControl margin="normal" required className={classes.formInput}>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -149,14 +115,8 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
-              <FormControl
-                margin="normal"
-                required
-                className={classes.formInput}
-              >
+            <Grid item className={classes.formElement}>
+              <FormControl margin="normal" required className={classes.formInput}>
                 <TextField
                   aria-label="password"
                   label="Password"
@@ -165,9 +125,7 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item
-              className={classes.formElement}
-            >
+            <Grid item className={classes.formElement}>
               <Button
                 type="submit"
                 variant="contained"
