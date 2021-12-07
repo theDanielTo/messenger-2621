@@ -4,37 +4,19 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
+  Box,
   Typography,
   Button,
   FormControl,
   TextField,
 } from "@material-ui/core";
+import { SideBanner } from "./components/Authentication/index";
 import { login } from "./store/utils/thunkCreators";
 
 const useStyles = makeStyles(() => ({
   root: {
     height: "100vh",
     width: "100%"
-  },
-  bannerImage: {
-    height: "100%",
-    background: "linear-gradient(to top, rgba(58, 141, 255, .80), rgba(58, 141, 255, .80)), url('./assets/bg-img.png') center/cover no-repeat",
-    color: "white"
-  },
-  bannerIcon: {
-    height: "100%",
-    transform: "translateY(-100%)",
-    '@media (max-width:600px)': {
-      height: "50%",
-      transform: "translateY(-50%)"
-    }
-  },
-  bannerText: {
-    padding: '0 8rem',
-    '@media (max-width:600px)': {
-      fontSize: 18,
-      padding: '0 1rem'
-    }
   },
   mainScreen: {
     height: "100%",
@@ -45,7 +27,7 @@ const useStyles = makeStyles(() => ({
     position: "absolute",
     top: 0,
     right: 0,
-    padding: "4rem",
+    padding: "3.5rem",
     '@media (max-width:600px)': {
       width: "50%",
       padding: "0.5rem",
@@ -61,7 +43,7 @@ const useStyles = makeStyles(() => ({
     }
   },
   formContainer: {
-    width: "50%",
+    width: "70%",
     height: "50%",
     '@media (max-width:600px)': {
       width: "100%"
@@ -69,6 +51,7 @@ const useStyles = makeStyles(() => ({
   },
   formHeader: {
     textAlign: "left",
+    fontWeight: "bold",
     '@media (max-width:600px)': {
       fontSize: "1.5em"
     }
@@ -83,6 +66,9 @@ const useStyles = makeStyles(() => ({
   },
   formInput: {
     width: "100%"
+  },
+  loginBtn: {
+    padding: "1rem 4rem"
   }
 }));
 
@@ -107,39 +93,10 @@ const Login = (props) => {
     <Grid container
       className={classes.root}
     >
-      <Grid container item
-        xs={6} md={5}
-        className={classes.bannerImage}
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item>
-          <img className={classes.bannerIcon}
-            src="./assets/bubble.svg"
-            alt="bubble"
-          />
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="h4"
-            align="center"
-            className={classes.bannerText}
-          >
-            Converse with anyone
-          </Typography>
-          <Typography
-            variant="h4"
-            align="center"
-            className={classes.bannerText}
-          >
-            with any language
-          </Typography>
-        </Grid>
-      </Grid>
+      <SideBanner />
 
       <Grid container item
-        xs={6} md={7}
+        sm={8} md={7}
         className={classes.mainScreen}
         direction="column"
         justifyContent="center"
@@ -170,7 +127,7 @@ const Login = (props) => {
               className={classes.formElement}
             >
               <Typography
-                variant="h3"
+                variant="h5"
                 className={classes.formHeader}
               >
                 Welcome back!
@@ -216,6 +173,7 @@ const Login = (props) => {
                 variant="contained"
                 size="large"
                 color="primary"
+                className={classes.loginBtn}
               >
                 Login
               </Button>

@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
   bannerImage: {
     height: "100%",
-    background: "linear-gradient(to top, rgba(58, 141, 255, .80), rgba(58, 141, 255, .80)), url('./assets/bg-img.png') center/cover no-repeat",
+    background: "linear-gradient(to top, rgba(58, 141, 255, 0.8), rgba(58, 141, 255, .80)), url('./assets/bg-img.png') center/cover no-repeat",
     color: "white"
   },
   bannerIcon: {
