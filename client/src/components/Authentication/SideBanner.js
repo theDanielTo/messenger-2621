@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "translateY(-10%)"
   },
   bannerIcon: {
-    marginBottom: "2rem"
+    marginBottom: theme.spacing(4)
   }
 }));
 

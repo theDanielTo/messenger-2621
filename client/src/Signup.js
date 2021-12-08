@@ -27,26 +27,25 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: 0,
     right: 0,
-    padding: "3rem",
+    padding: theme.spacing(5),
     '@media (max-width:600px)': {
       width: "80%",
-      padding: "0.5rem",
+      padding: theme.spacing(2),
       justifyContent: "flex-end"
     }
   },
   routeText: {
     lineHeight: "4rem",
-    marginRight: "3rem",
+    marginRight: theme.spacing(5),
     '@media (max-width:820px)': {
-      fontSize: 14,
-      marginRight: "1rem"
+      marginRight: theme.spacing(2)
     }
   },
   loginBtn: {
     padding: "1rem 3rem",
-    boxShadow: "0 0 1rem 0.2rem rgba(58, 141, 255, 0.2)",
+    boxShadow: "0 0 0.7rem rgba(178, 178, 178, 0.4)",
     '@media (max-width:820px)': {
-      padding: "1rem 2rem"
+      padding: theme.spacing(2, 4)
     }
   },
   formContainer: {
@@ -54,19 +53,18 @@ const useStyles = makeStyles((theme) => ({
     height: "50%"
   },
   formHeader: {
-    textAlign: "left",
-    fontWeight: "bold"
+    textAlign: "left"
   },
   formElement: {
     width: "100%",
-    marginBottom: "1.5rem",
+    marginBottom: theme.spacing(3),
     textAlign: "center"
   },
   formInput: {
     width: "100%"
   },
   createBtn: {
-    padding: "1rem 4rem"
+    padding: theme.spacing(2, 8)
   }
 }));
 
@@ -96,9 +94,7 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container
-      className={classes.root}
-    >
+    <Grid container className={classes.root}>
       <SideBanner />
 
       <Grid container item
@@ -123,7 +119,7 @@ const Login = (props) => {
         <form onSubmit={handleRegister} className={classes.formContainer}>
           <Grid container>
             <Grid item className={classes.formElement}>
-              <Typography variant="h5" className={classes.formHeader}>
+              <Typography variant="h2" className={classes.formHeader}>
                 Create an account.
               </Typography>
             </Grid>
