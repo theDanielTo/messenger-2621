@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
-  const history = useHistory();
   const classes = useStyles();
   const { user, login } = props;
 
@@ -61,7 +60,6 @@ const Login = (props) => {
   return (
     <Grid container className={classes.root}>
       <SideBanner />
-
       <Grid container item
         sm={7}
         className={classes.mainScreen}

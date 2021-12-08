@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     padding: theme.spacing(5),
     '@media (max-width:700px)': {
-      width: "50%",
+      width: "80%",
       padding: theme.spacing(2),
       justifyContent: "flex-end"
     }
