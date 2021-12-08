@@ -74,6 +74,7 @@ const Input = (props) => {
     };
     await postMessage(reqBody);
     setText("");
+    setFiles([]);
   };
 
   return (
