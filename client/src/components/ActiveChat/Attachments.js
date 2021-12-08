@@ -4,10 +4,10 @@ import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "70vw",
+    maxWidth: "50vw",
     display: "flex",
     justifyContent: "flex-start",
-    overflow: "scroll"
+    overflowX: "auto"
   },
   image: {
     height: 150,
