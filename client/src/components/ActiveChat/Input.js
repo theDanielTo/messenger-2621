@@ -90,10 +90,7 @@ const Input = (props) => {
           endAdornment={
             <InputAdornment position="end">
               <InputLabel htmlFor="attachment">
-                <AttachmentIcon
-                  color="secondary"
-                  className={classes.attachmentIcon}
-                />
+                <AttachmentIcon color="secondary" className={classes.attachmentIcon} />
                 <input
                   type="file"
                   name="attachment"

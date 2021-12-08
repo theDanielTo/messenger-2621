@@ -36,13 +36,13 @@ const SenderBubble = (props) => {
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
       <Attachments attachments={attachments} />
-      {
-        text ? (
-          <Box className={classes.bubble}>
-            <Typography className={classes.text}>{text}</Typography>
-          </Box>
-        ) : <></>
-      }
+      {text ? (
+        <Box className={classes.bubble}>
+          <Typography className={classes.text}>{text}</Typography>
+        </Box>
+      ) : (
+        <></>
+      )}
     </Box>
   ) : (
     <Box className={classes.root}>
