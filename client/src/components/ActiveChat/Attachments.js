@@ -4,11 +4,10 @@ import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    maxWidth: "70vw",
     display: "flex",
-    justifyContent: "flex-end"
-  },
-  otherRoot: {
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    overflow: "scroll"
   },
   image: {
     height: 150,
@@ -19,17 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Attachments = (props) => {
   const classes = useStyles();
-  const { key, attachments, isOther } = props;
+  const { key, attachments } = props;
 
-  return isOther ? (
-    <Box className={`${classes.root} ${classes.otherRoot}`}>
-      {attachments.map((attachment) => {
-        return (
-          <img key={key} src={attachment} alt={`attachment-${key}`} className={classes.image} />
-        );
-      })}
-    </Box>
-  ) : (
+  return (
     <Box className={classes.root}>
       {attachments.map((attachment) => {
         return (

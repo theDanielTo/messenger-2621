@@ -47,7 +47,7 @@ const OtherUserBubble = (props) => {
         <Box className={classes.bubble}>
           <Typography className={classes.text}>{text}</Typography>
         </Box>
-        <Attachments key={key} attachments={attachments} isOther={true} />
+        <Attachments key={key} attachments={attachments} />
       </Box>
     </Box>
   ) : (
