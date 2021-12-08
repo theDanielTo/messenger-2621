@@ -9,7 +9,7 @@ import {
   FormControl,
   TextField,
 } from "@material-ui/core";
-import { SideBanner } from "./components/Authentication/index";
+import { SideBanner, RedirectLink } from "./components/Authentication/index";
 import { login } from "./store/utils/thunkCreators";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,33 +20,6 @@ const useStyles = makeStyles((theme) => ({
   mainScreen: {
     height: "100%",
     width: "100%"
-  },
-  signupRoute: {
-    width: "auto",
-    position: "absolute",
-    top: 0,
-    right: 0,
-    padding: theme.spacing(5),
-    '@media (max-width:700px)': {
-      width: "80%",
-      padding: theme.spacing(2),
-      justifyContent: "flex-end"
-    }
-  },
-  routeText: {
-    lineHeight: "4rem",
-    marginRight: theme.spacing(5),
-    '@media (max-width:820px)': {
-      fontSize: 14,
-      marginRight: theme.spacing(2)
-    }
-  },
-  createAccountBtn: {
-    padding: "1rem 3rem",
-    boxShadow: "0 0 0.7rem rgba(178, 178, 178, 0.4)",
-    '@media (max-width:820px)': {
-      padding: theme.spacing(2, 4)
-    }
   },
   formContainer: {
     width: "70%",
@@ -96,18 +69,10 @@ const Login = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid container className={classes.signupRoute}>
-          <Typography color="secondary" className={classes.routeText}>
-            Don't have an account?
-          </Typography>
-          <Button
-            onClick={() => history.push("/register")}
-            color="primary"
-            className={classes.createAccountBtn}
-          >
-            Create account
-          </Button>
-        </Grid>
+        <RedirectLink
+          route="/register"
+          routeText="Don't have an account?"
+          buttonText="Create account" />
         <form onSubmit={handleLogin} className={classes.formContainer}>
           <Grid container>
             <Grid item className={classes.formElement}>
