@@ -44,9 +44,13 @@ const OtherUserBubble = (props) => {
         <Typography className={classes.usernameDate}>
           {otherUser.username} {time}
         </Typography>
-        <Box className={classes.bubble}>
-          <Typography className={classes.text}>{text}</Typography>
-        </Box>
+        {
+          text ? (
+            <Box className={classes.bubble}>
+              <Typography className={classes.text}>{text}</Typography>
+            </Box>
+          ) : <></>
+        }
         <Attachments key={key} attachments={attachments} />
       </Box>
     </Box>
