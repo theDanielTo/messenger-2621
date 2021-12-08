@@ -95,7 +95,6 @@ const Input = (props) => {
                   className={classes.attachmentIcon}
                 />
                 <input
-                  required
                   type="file"
                   name="attachment"
                   id="attachment"
