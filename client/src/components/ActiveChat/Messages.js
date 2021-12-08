@@ -16,12 +16,12 @@ const Messages = (props) => {
         if (message.attachments) {
           return message.senderId === userId ? (
             <Box key={message.id}>
-              <Attachments key={message.id} attachments={message.attachments} />
+              <Attachments key={message.id} attachments={message.attachments} isOther={false} />
               <SenderBubble text={message.text} time={time} />
             </Box>
           ) : (
             <Box key={message.id}>
-              <Attachments key={message.id} attachments={message.attachments} />
+              <Attachments key={message.id} attachments={message.attachments} isOther={true} />
               <OtherUserBubble text={message.text} time={time} otherUser={otherUser} />
             </Box>
           );
