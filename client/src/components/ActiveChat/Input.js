@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FormControl, FilledInput, InputLabel, InputAdornment } from "@material-ui/core";
+import { FormControl, FilledInput, InputLabel, InputAdornment, Typography } from "@material-ui/core";
 import AttachmentIcon from '@material-ui/icons/Attachment';
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
@@ -8,7 +8,7 @@ import { postMessage } from "../../store/utils/thunkCreators";
 
 const CLOUDINARY_API = "https://lfz-cors.herokuapp.com/?url=https://api.cloudinary.com/v1_1/dto1989/image/upload";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     justifySelf: "flex-end",
     marginTop: 15
@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
   },
   attachmentIcon: {
     fontSize: "2rem",
+    float: "right",
     cursor: "pointer",
     "&:hover": {
       color: "#333"
@@ -28,6 +29,12 @@ const useStyles = makeStyles(() => ({
   },
   fileInput: {
     display: "none"
+  },
+  fileSelectDialog: {
+    fontSize: "0.8rem",
+    color: theme.palette.secondary,
+    lineHeight: "2rem",
+    marginRight: "2.5rem"
   }
 }));
 
@@ -99,6 +106,13 @@ const Input = (props) => {
                   className={classes.fileInput}
                   onChange={handleFileSelect}
                 />
+                <Typography className={classes.fileSelectDialog}>
+                  {files.length > 0 ? (
+                    `${files.length} file(s) selected`
+                  ) : (
+                    ""
+                  )}
+                </Typography>
               </InputLabel>
             </InputAdornment>
           }
