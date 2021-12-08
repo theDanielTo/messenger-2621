@@ -49,7 +49,7 @@ const Input = (props) => {
 
     await Promise.all(promises)
       .then(responses => {
-        setFiles(() => [...files, ...responses])
+        setFiles(() => [...responses])
       })
   }
 
