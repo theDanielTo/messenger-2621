@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 
 const OtherUserBubble = (props) => {
   const classes = useStyles();
-  const { key, text, time, otherUser, attachments } = props;
+  const { text, time, otherUser, attachments } = props;
 
   return attachments ? (
     <Box className={classes.root}>
@@ -51,7 +51,7 @@ const OtherUserBubble = (props) => {
             </Box>
           ) : <></>
         }
-        <Attachments key={key} attachments={attachments} />
+        <Attachments attachments={attachments} />
       </Box>
     </Box>
   ) : (

@@ -9,24 +9,32 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
     overflowX: "auto"
   },
-  image: {
+  singleImage: {
     height: 150,
-    borderRadius: 5,
+    borderRadius: 10
+  },
+  multipleImage: {
+    height: 100,
+    borderRadius: 10,
     margin: 4
   }
 }));
 
 const Attachments = (props) => {
   const classes = useStyles();
-  const { key, attachments } = props;
+  const { attachments } = props;
 
   return (
     <Box className={classes.root}>
-      {attachments.map((attachment) => {
-        return (
-          <img key={key} src={attachment} alt={`attachment-${key}`} className={classes.image} />
-        );
-      })}
+      {attachments.length > 1 ? (
+        attachments.map((attachment) => {
+          return (
+            <img key={attachment} src={attachment} alt={`attachment-${attachment}`} className={classes.multipleImage} />
+          );
+        })
+      ) : (
+        <img src={attachments[0]} alt={`attachment-${attachments[0]}`} className={classes.singleImage} />
+      )}
     </Box>
   );
 }

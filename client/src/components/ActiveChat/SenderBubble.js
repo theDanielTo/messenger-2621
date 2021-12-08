@@ -30,12 +30,12 @@ const useStyles = makeStyles(() => ({
 
 const SenderBubble = (props) => {
   const classes = useStyles();
-  const { key, time, text, attachments } = props;
+  const { time, text, attachments } = props;
 
   return attachments ? (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
-      <Attachments key={key} attachments={attachments} />
+      <Attachments attachments={attachments} />
       {
         text ? (
           <Box className={classes.bubble}>

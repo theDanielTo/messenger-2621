@@ -70,7 +70,7 @@ const Input = (props) => {
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
-      attachments: attachmentUrls
+      attachments: attachmentUrls.length > 0 ? attachmentUrls : null
     };
     await postMessage(reqBody);
     setText("");
