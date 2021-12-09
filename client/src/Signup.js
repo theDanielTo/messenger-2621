@@ -1,19 +1,34 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
   TextField,
   FormHelperText,
 } from "@material-ui/core";
+import { SideBanner, RedirectLink } from "./components/Authentication/index";
 import { register } from "./store/utils/thunkCreators";
 
-const Login = (props) => {
-  const history = useHistory();
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    width: "100%"
+  },
+  mainSection: {
+    height: "100%"
+  },
+  formContainer: {
+    width: "70%",
+    height: "50%"
+  }
+}));
+
+const Signup = (props) => {
+  const classes = useStyles();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -37,16 +52,28 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Button onClick={() => history.push("/login")}>Login</Button>
-        </Grid>
-        <form onSubmit={handleRegister}>
-          <Grid>
-            <Grid>
-              <FormControl>
+    <Grid container className={classes.root}>
+      <SideBanner />
+      <Grid container item
+        sm={7}
+        className={classes.mainSection}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <RedirectLink
+          route="/login"
+          routeText="Already have an account?"
+          buttonText="Login" />
+        <form onSubmit={handleRegister} className={classes.formContainer}>
+          <Grid container>
+            <Grid item>
+              <Typography variant="h2">
+                Create an account.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <FormControl marginNormal fullWidth required>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -56,8 +83,8 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid>
-              <FormControl>
+            <Grid item>
+              <FormControl marginNormal fullWidth >
                 <TextField
                   label="E-mail address"
                   aria-label="e-mail address"
@@ -67,8 +94,11 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
+            <Grid item>
+              <FormControl
+                error={!!formErrorMessage.confirmPassword}
+                marginNormal fullWidth
+              >
                 <TextField
                   aria-label="password"
                   label="Password"
@@ -82,8 +112,11 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
+            <Grid item>
+              <FormControl
+                error={!!formErrorMessage.confirmPassword}
+                marginNormal fullWidth
+              >
                 <TextField
                   label="Confirm Password"
                   aria-label="confirm password"
@@ -97,12 +130,20 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Button type="submit" variant="contained" size="large">
-              Create
-            </Button>
+            <Grid item>
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                color="primary"
+              >
+                Create
+              </Button>
+            </Grid>
           </Grid>
         </form>
-      </Box>
+      </Grid>
+
     </Grid>
   );
 };
@@ -121,4 +162,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
