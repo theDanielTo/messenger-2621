@@ -1,18 +1,33 @@
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
   TextField,
 } from "@material-ui/core";
+import { SideBanner, RedirectLink } from "./components/Authentication/index";
 import { login } from "./store/utils/thunkCreators";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    width: "100%"
+  },
+  mainSection: {
+    height: "100%"
+  },
+  formContainer: {
+    width: "70%",
+    height: "50%"
+  }
+}));
+
 const Login = (props) => {
-  const history = useHistory();
+  const classes = useStyles();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -28,16 +43,28 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justifyContent="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
-        </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
+    <Grid container className={classes.root}>
+      <SideBanner />
+      <Grid container item
+        sm={7}
+        className={classes.mainSection}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <RedirectLink
+          route="/register"
+          routeText="Don't have an account?"
+          buttonText="Create account" />
+        <form onSubmit={handleLogin} className={classes.formContainer}>
+          <Grid container>
+            <Grid item>
+              <Typography variant="h2">
+                Welcome back!
+              </Typography>
+            </Grid>
+            <Grid item>
+              <FormControl marginNormal fullWidth required>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -46,22 +73,29 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
+            <Grid item>
+              <FormControl marginNormal fullWidth required>
+                <TextField
+                  aria-label="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item>
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                color="primary"
+              >
                 Login
               </Button>
             </Grid>
           </Grid>
         </form>
-      </Box>
+      </Grid>
     </Grid>
   );
 };

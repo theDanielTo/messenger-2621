@@ -1,9 +1,15 @@
-import { createMuiTheme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core";
 
-export const theme = createMuiTheme({
+export const theme = createTheme({
+  spacing: 8,
   typography: {
     fontFamily: "Open Sans, sans-serif",
     fontSize: 14,
+    h2: {
+      fontSize: 24,
+      fontWeight: "bold",
+      textAlign: "left"
+    },
     button: {
       textTransform: "none",
       letterSpacing: 0,
@@ -14,6 +20,18 @@ export const theme = createMuiTheme({
     MuiInput: {
       input: {
         fontWeight: "bold"
+      }
+    },
+    MuiButton: {
+      sizeLarge: {
+        padding: "1rem 4rem"
+      }
+    },
+    MuiGrid: {
+      item: {
+        width: "100%",
+        marginBottom: "2rem",
+        textAlign: "center"
       }
     }
   },
