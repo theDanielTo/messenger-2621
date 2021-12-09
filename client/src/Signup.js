@@ -18,31 +18,16 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     width: "100%"
   },
-  mainScreen: {
-    height: "100%",
-    width: "100%"
+  mainSection: {
+    height: "100%"
   },
   formContainer: {
     width: "70%",
     height: "50%"
-  },
-  formHeader: {
-    textAlign: "left"
-  },
-  formElement: {
-    width: "100%",
-    marginBottom: theme.spacing(3),
-    textAlign: "center"
-  },
-  formInput: {
-    width: "100%"
-  },
-  createBtn: {
-    padding: theme.spacing(2, 8)
   }
 }));
 
-const Login = (props) => {
+const Signup = (props) => {
   const classes = useStyles();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
@@ -69,10 +54,9 @@ const Login = (props) => {
   return (
     <Grid container className={classes.root}>
       <SideBanner />
-
       <Grid container item
         sm={7}
-        className={classes.mainScreen}
+        className={classes.mainSection}
         direction="column"
         justifyContent="center"
         alignItems="center"
@@ -83,13 +67,13 @@ const Login = (props) => {
           buttonText="Login" />
         <form onSubmit={handleRegister} className={classes.formContainer}>
           <Grid container>
-            <Grid item className={classes.formElement}>
-              <Typography variant="h2" className={classes.formHeader}>
+            <Grid item>
+              <Typography variant="h2">
                 Create an account.
               </Typography>
             </Grid>
-            <Grid item className={classes.formElement}>
-              <FormControl margin="normal" required className={classes.formInput}>
+            <Grid item>
+              <FormControl marginNormal fullWidth required>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -99,8 +83,8 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item className={classes.formElement}>
-              <FormControl className={classes.formInput}>
+            <Grid item>
+              <FormControl marginNormal fullWidth >
                 <TextField
                   label="E-mail address"
                   aria-label="e-mail address"
@@ -110,10 +94,10 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item className={classes.formElement}>
+            <Grid item>
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
-                className={classes.formInput}
+                marginNormal fullWidth
               >
                 <TextField
                   aria-label="password"
@@ -128,10 +112,10 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item className={classes.formElement}>
+            <Grid item>
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
-                className={classes.formInput}
+                marginNormal fullWidth
               >
                 <TextField
                   label="Confirm Password"
@@ -146,13 +130,12 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item className={classes.formElement}>
+            <Grid item>
               <Button
                 type="submit"
                 variant="contained"
                 size="large"
                 color="primary"
-                className={classes.createBtn}
               >
                 Create
               </Button>
@@ -179,4 +162,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

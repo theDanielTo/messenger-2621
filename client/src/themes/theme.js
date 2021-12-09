@@ -7,7 +7,8 @@ export const theme = createTheme({
     fontSize: 14,
     h2: {
       fontSize: 24,
-      fontWeight: "bold"
+      fontWeight: "bold",
+      textAlign: "left"
     },
     button: {
       textTransform: "none",
@@ -19,6 +20,18 @@ export const theme = createTheme({
     MuiInput: {
       input: {
         fontWeight: "bold"
+      }
+    },
+    MuiButton: {
+      sizeLarge: {
+        padding: "1rem 4rem"
+      }
+    },
+    MuiGrid: {
+      item: {
+        width: "100%",
+        marginBottom: "2rem",
+        textAlign: "center"
       }
     }
   },
