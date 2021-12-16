@@ -1,12 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "50vw",
-    display: "flex",
-    justifyContent: "flex-start",
     overflowX: "auto"
   },
   singleImage: {
@@ -25,17 +23,24 @@ const Attachments = (props) => {
   const { attachments } = props;
 
   return (
-    <Box className={classes.root}>
+    <Grid
+      container
+      justifyContent="flex-start"
+      className={classes.root}>
       {attachments.length > 1 ? (
         attachments.map((attachment) => {
           return (
-            <img key={attachment} src={attachment} alt={`attachment-${attachment}`} className={classes.multipleImage} />
+            <Grid item>
+              <img key={attachment} src={attachment} alt={`attachment-${attachment}`} className={classes.multipleImage} />
+            </Grid>
           );
         })
       ) : (
-        <img src={attachments[0]} alt={`attachment-${attachments[0]}`} className={classes.singleImage} />
+        <Grid item>
+          <img src={attachments[0]} alt={`attachment-${attachments[0]}`} className={classes.singleImage} />
+        </Grid>
       )}
-    </Box>
+    </Grid>
   );
 }
 

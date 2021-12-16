@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
 
-const CLOUDINARY_API = "https://lfz-cors.herokuapp.com/?url=https://api.cloudinary.com/v1_1/dto1989/image/upload";
+// const CLOUDINARY_API = "https://lfz-cors.herokuapp.com/?url=https://api.cloudinary.com/v1_1/dto1989/image/upload";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +51,7 @@ const Input = (props) => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "p78baqe2");
-      promises.push(axios.post(CLOUDINARY_API, formData));
+      promises.push(axios.post(process.env.CLOUDINARY_URL, formData));
     }
 
     await Promise.all(promises)
