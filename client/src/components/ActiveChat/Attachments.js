@@ -4,42 +4,43 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    maxHeight: 200,
     maxWidth: "50vw",
-    overflowX: "auto"
+    overflow: "auto"
   },
-  singleImage: {
-    height: 150,
-    borderRadius: 10
-  },
-  multipleImage: {
-    height: 100,
+  image: {
     borderRadius: 10,
-    margin: 4
+    height: (props) =>
+      props.attachments.length > 1
+        ? 100
+        : 150,
+    margin: (props) =>
+      props.attachments.length > 1
+        ? 4
+        : 0
   }
 }));
 
 const Attachments = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const { attachments } = props;
 
   return (
-    <Grid
-      container
-      justifyContent="flex-start"
-      className={classes.root}>
-      {attachments.length > 1 ? (
-        attachments.map((attachment) => {
-          return (
-            <Grid item>
-              <img key={attachment} src={attachment} alt={`attachment-${attachment}`} className={classes.multipleImage} />
-            </Grid>
-          );
-        })
-      ) : (
-        <Grid item>
-          <img src={attachments[0]} alt={`attachment-${attachments[0]}`} className={classes.singleImage} />
-        </Grid>
-      )}
+    <Grid container
+      justifyContent="flex-end"
+      className={classes.root}
+    >
+      {attachments.map((attachment) => {
+        return (
+          <Grid>
+            <img key={attachment}
+              src={attachment}
+              alt={`attachment-${attachment}`}
+              className={classes.image}
+            />
+          </Grid>
+        )
+      })}
     </Grid>
   );
 }
