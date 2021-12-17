@@ -1,12 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxHeight: 200,
+    display: "flex",
+    justifyContent: "flex-start",
     maxWidth: "50vw",
-    overflow: "auto"
+    overflowX: "auto"
   },
   image: {
     borderRadius: 10,
@@ -26,22 +27,17 @@ const Attachments = (props) => {
   const { attachments } = props;
 
   return (
-    <Grid container
-      justifyContent="flex-end"
-      className={classes.root}
-    >
-      {attachments.map((attachment) => {
+    <Box className={classes.root}>
+      {attachments.map((attachment, index) => {
         return (
-          <Grid>
-            <img key={attachment}
-              src={attachment}
-              alt={`attachment-${attachment}`}
-              className={classes.image}
-            />
-          </Grid>
+          <img key={`${attachment}-${index}`}
+            src={attachment}
+            alt={`attachment-${index}`}
+            className={classes.image}
+          />
         )
       })}
-    </Grid>
+    </Box>
   );
 }
 
