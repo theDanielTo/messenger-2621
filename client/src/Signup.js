@@ -73,7 +73,7 @@ const Signup = (props) => {
               </Typography>
             </Grid>
             <Grid item>
-              <FormControl marginNormal fullWidth required>
+              <FormControl margin="normal" fullWidth required>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -84,7 +84,7 @@ const Signup = (props) => {
               </FormControl>
             </Grid>
             <Grid item>
-              <FormControl marginNormal fullWidth >
+              <FormControl margin="normal" fullWidth >
                 <TextField
                   label="E-mail address"
                   aria-label="e-mail address"
@@ -97,7 +97,7 @@ const Signup = (props) => {
             <Grid item>
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
-                marginNormal fullWidth
+                margin="normal" fullWidth
               >
                 <TextField
                   aria-label="password"
@@ -115,7 +115,7 @@ const Signup = (props) => {
             <Grid item>
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
-                marginNormal fullWidth
+                margin="normal" fullWidth
               >
                 <TextField
                   label="Confirm Password"

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
+import { Attachments } from "../ActiveChat";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,15 +30,28 @@ const useStyles = makeStyles(() => ({
 
 const SenderBubble = (props) => {
   const classes = useStyles();
-  const { time, text } = props;
-  return (
+  const { time, text, attachments } = props;
+
+  return attachments ? (
+    <Box className={classes.root}>
+      <Typography className={classes.date}>{time}</Typography>
+      <Attachments attachments={attachments} />
+      {text ? (
+        <Box className={classes.bubble}>
+          <Typography className={classes.text}>{text}</Typography>
+        </Box>
+      ) : (
+        <></>
+      )}
+    </Box>
+  ) : (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
       <Box className={classes.bubble}>
         <Typography className={classes.text}>{text}</Typography>
       </Box>
     </Box>
-  );
+  )
 };
 
 export default SenderBubble;

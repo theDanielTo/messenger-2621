@@ -33,6 +33,13 @@ export const theme = createTheme({
         marginBottom: "2rem",
         textAlign: "center"
       }
+    },
+    MuiPaper: {
+      elevation3: {
+        backgroundColor: "#DEECFF",
+        padding: 1,
+        margin: 4
+      }
     }
   },
   palette: {

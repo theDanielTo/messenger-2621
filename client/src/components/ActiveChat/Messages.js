@@ -9,13 +9,13 @@ const Messages = (props) => {
   return (
     <Box>
       {messages.map((message) => {
-          const time = moment(message.createdAt).format("h:mm");
+        const time = moment(message.createdAt).format("h:mm");
 
-          return message.senderId === userId ? (
-            <SenderBubble key={message.id} text={message.text} time={time} />
-          ) : (
-            <OtherUserBubble key={message.id} text={message.text} time={time} otherUser={otherUser} />
-          );
+        return message.senderId === userId ? (
+          <SenderBubble key={message.id} id={message.id} text={message.text} time={time} attachments={message.attachments} />
+        ) : (
+          <OtherUserBubble key={message.id} id={message.id} text={message.text} time={time} attachments={message.attachments} otherUser={otherUser} />
+        );
       })}
     </Box>
   );
