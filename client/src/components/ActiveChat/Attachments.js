@@ -1,11 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
+import { Box, Paper } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    justifyContent: "flex-start",
     maxWidth: "50vw",
     overflowX: "auto"
   },
@@ -17,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
         : 150,
     margin: (props) =>
       props.attachments.length > 1
-        ? 4
-        : 0
+        ? theme.spacing(1)
+        : theme.spacing(0)
   }
 }));
 
@@ -30,11 +29,13 @@ const Attachments = (props) => {
     <Box className={classes.root}>
       {attachments.map((attachment, index) => {
         return (
-          <img key={`${attachment}-${index}`}
-            src={attachment}
-            alt={`attachment-${index}`}
-            className={classes.image}
-          />
+          <Paper variant="elevated" elevation={3}>
+            <img key={`${attachment}-${index}`}
+              src={attachment}
+              alt={`attachment-${index}`}
+              className={classes.image}
+            />
+          </Paper>
         )
       })}
     </Box>
